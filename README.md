@@ -1,2 +1,3 @@
 # TestngITestContextSerializer
-Jackson Custom Serializer for TestNG ITestContext
+
+Jackson Custom Serializer for TestNG ITestContext object
