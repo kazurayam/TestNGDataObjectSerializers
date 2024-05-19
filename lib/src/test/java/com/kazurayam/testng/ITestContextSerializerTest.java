@@ -38,8 +38,9 @@ public class ITestContextSerializerTest {
         context.setAttribute("now", new Date());
         //
         ObjectMapper mapper = new ObjectMapper();
-        SimpleModule module = new SimpleModule();
+        SimpleModule module = new SimpleModule("ITestContextSerializer");
         module.addSerializer(context.getClass(), new ITestContextSerializer());
+        module.addSerializer(Date.class, new DateSerializer());
         mapper.registerModule(module);
 
         String serialized = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(context);

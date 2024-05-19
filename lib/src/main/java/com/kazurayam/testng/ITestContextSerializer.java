@@ -25,21 +25,6 @@ public class ITestContextSerializer extends StdSerializer<ITestContext> {
 
     public ITestContextSerializer(Class<ITestContext> t) { super(t); }
 
-    private DateFormat dateFormat = getDefaultDateFormat();
-
-    public final DateFormat getDefaultDateFormat() {
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z");
-        df.setTimeZone(TimeZone.getTimeZone(ZoneId.of("Asia/Tokyo")));
-        return df;
-    }
-
-    public void setDateFormat(DateFormat dateFormat) {
-        this.dateFormat = dateFormat;
-    }
-
-    private String formatDate(Date date) {
-        return dateFormat.format(date);
-    }
 
     @Override
     public void serialize(
@@ -56,10 +41,10 @@ public class ITestContextSerializer extends StdSerializer<ITestContext> {
             jgen.writeStringField("name", value.getName());
         }
         if (value.getStartDate() != null) {
-            jgen.writeStringField("startDate", formatDate(value.getStartDate()));
+            jgen.writeObjectField("startDate", value.getStartDate());
         }
         if (value.getEndDate() != null) {
-            jgen.writeStringField("endDate", formatDate(value.getEndDate()));
+            jgen.writeObjectField("endDate", value.getEndDate());
         }
         if (value.getOutputDirectory() != null) {
             jgen.writeStringField("outputDirectory", value.getOutputDirectory());
@@ -70,25 +55,16 @@ public class ITestContextSerializer extends StdSerializer<ITestContext> {
         for (String attrName : value.getAttributeNames()) {
             Object v = value.getAttribute(attrName);
             if (v != null) {
-                jgen.writeStringField(attrName, stringify(v));
+                jgen.writeObjectField(attrName, v);
             }
         }
         jgen.writeEndObject();
-        //
-        XmlTest xmlTest = value.getCurrentXmlTest();
 
+        //
+        //XmlTest xmlTest = value.getCurrentXmlTest();
 
         //
         jgen.writeEndObject();
     }
 
-    private String stringify(Object obj) {
-        if (obj == null) {
-           return null;
-        } else if (obj instanceof Date) {
-            return formatDate((Date)obj);
-        } else {
-            return obj.toString();
-        }
-    }
 }
