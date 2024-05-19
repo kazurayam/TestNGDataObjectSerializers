@@ -22,7 +22,7 @@ public class DateSerializer extends StdSerializer<Date> {
         dateFormat = getDefaultDateFormat();
     }
 
-    public final DateFormat getDefaultDateFormat() {
+    public static final DateFormat getDefaultDateFormat() {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z");
         df.setTimeZone(TimeZone.getTimeZone(ZoneId.of("Asia/Tokyo")));
         return df;
