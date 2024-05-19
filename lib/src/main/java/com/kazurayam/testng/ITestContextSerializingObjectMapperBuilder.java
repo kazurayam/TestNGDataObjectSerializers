@@ -8,21 +8,21 @@ import org.testng.ITestContext;
 import java.text.DateFormat;
 import java.util.Date;
 
-public class ITestContextObjectMapperBuilder {
+public class ITestContextSerializingObjectMapperBuilder {
 
     private boolean enablePrettyPrint;
     private DateFormat dateFormat;
-    public ITestContextObjectMapperBuilder() {
+    public ITestContextSerializingObjectMapperBuilder() {
         enablePrettyPrint = false;
         dateFormat = DateSerializer.getDefaultDateFormat();
     }
 
-    public ITestContextObjectMapperBuilder enablePrettyPrint(boolean enablePrettyPrint) {
+    public ITestContextSerializingObjectMapperBuilder enablePrettyPrint(boolean enablePrettyPrint) {
         this.enablePrettyPrint = enablePrettyPrint;
         return this;
     }
 
-    public ITestContextObjectMapperBuilder dateFormat(DateFormat dateFormat) {
+    public ITestContextSerializingObjectMapperBuilder dateFormat(DateFormat dateFormat) {
         this.dateFormat = dateFormat;
         return this;
     }

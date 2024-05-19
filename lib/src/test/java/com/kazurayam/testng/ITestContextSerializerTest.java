@@ -2,7 +2,6 @@ package com.kazurayam.testng;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.module.SimpleModule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.ITestContext;
@@ -37,7 +36,7 @@ public class ITestContextSerializerTest {
         context.setAttribute("foo", "bar");
         context.setAttribute("now", new Date());
         //
-        ObjectMapper mapper = new ITestContextObjectMapperBuilder().build();
+        ObjectMapper mapper = new ITestContextSerializingObjectMapperBuilder().build();
 
         String serialized = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(context);
 
