@@ -7,9 +7,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.ZoneId;
 import java.util.Date;
-import java.util.TimeZone;
 
 public class DateSerializer extends StdSerializer<Date> {
 
@@ -22,9 +20,13 @@ public class DateSerializer extends StdSerializer<Date> {
         dateFormat = getDefaultDateFormat();
     }
 
+    public DateSerializer dateFormat(DateFormat dateFormat) {
+        this.dateFormat = dateFormat;
+        return this;
+    }
+
     public static final DateFormat getDefaultDateFormat() {
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z");
-        df.setTimeZone(TimeZone.getTimeZone(ZoneId.of("Asia/Tokyo")));
+        DateFormat df = new SimpleDateFormat();
         return df;
     }
 
