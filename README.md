@@ -1,7 +1,3 @@
-# TestngITestContextSerializer
+# TestNGDataObjectSerializers
 
-Jackson Custom Serializer for TestNG ITestContext object
-
-
-
-https://www.andygibson.net/blog/article/introduction-to-jackson-serializers/
+Jackson Databind Custom Serializers for TestNG Data Object such as ITestContext and ITestResult.
